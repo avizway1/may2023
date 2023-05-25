@@ -1,0 +1,187 @@
+_________________________________________________________________________________
+
+S3 : Simple Storage Service :
+-
+Object based storage :  We cannot install/run any applications/os. : Dropbox / GDrive 
+--> Designed to flat files.
+
+Block based storage : Designed to run OS, We can install/run applications.. : EBS, Instance store volumes. : EC2 
+Storage over the network : Storage runs over the network and it can be mounted to multiple devices. : EFS, FSx : EC2
+
+--> Designed to store objects. We can store any flat files.
+--> We store data in BUCKETS.
+--> Bucket names should be unique across the globe.
+--> Defualtly, we can create 100 buckets, This is a soft limit.
+--> We can store unlimited data in a bucket.
+--> No Pre-provisioning required.
+--> Bucket naming limitations.
+	--> Min char 3, Max 63 char length
+	--> Bucket name should be in small , and numeric
+	--> Bucket name should not start with .
+	--> Should not end with . , No adjesent ..
+	--> Bucket name should not resemble IP address format. (192.168.100.1)
+
+--> We can upload objects to this buckets.
+--> Min obj size : 0 bytes.. Max Obj size: 5 TB
+--> S3 is a global service. Doesn't required region selection.
+--> While creating we need to choose the region. Data physically resides at this regions AZs. 
+
+https://s3.ap-south-1.amazonaws.com/bucketname/objectname (standard URL)
+https://bucketname.s3.ap-south-1.amazonaws.com/objectname (virtual path)
+https://bucketname.s3.amazonaws.com/objectname (virtual path)
+
+Virtual paths won't work if we have . in bucket names.
+
+To make an object public : 
+
+1. Block Public Access settings for this account : Account Level Blocking
+2. Block public access (bucket settings) : Bucket level Blocking
+--> We should make an object public, then only Object URLs works.
+** Object Ownership : ACLs enabled
+3. Make object public. (Select object --> actions --> last option --> make public using acl)
+
+S3 Free Tier ELigibility : 
+5 GB Standard Storage
+--> 2000 PUT (Upload) / 20,000 GET (Download)
+_______________________________________________________________________________
+
+
+GDrive : 100 gb plan						S3	: no pre provisioning req
+
+20 gb Daily									S3-Standard
+20 gb Infreq 								Standard-IA / OneZOne-IA
+10 gb don't know when to access				Intelligent Tier
+10 gb archive								Glacier / Glacier-DA
+
+30gb
+
+99.99% Ava
+99.999999999 % Durability
+
+
+S3 Storage Classes : 
+
+--> S3 Standard : Defualt storage class for all the data we upload to s3. Data will be available immedeatly.
+Designed to store : Frequently accessed data. 
+Availability : 99.99%,  Durability: 99.999999999 (11 9's) 
+Data replicates across : >= 3 AZs
+
+--> Standard-IA : Data will be available immedeatly. Designed to store : infrequently accessed data
+Avai : 99.9%, Durability : 99.999999999 (11 9's) 
+Data replicates across : >= 3 AZs
+
+--> One Zone-IA : Data will be available immedeatly. Designed to store : infrequently accessed data. Store only non-critical data
+Avai : 99.5 %, Durability : 99.999999999 (11 9's) 
+Data replicates across : 1 AZs
+
+--> Glacier Flexible Retrieval (Formerly Glacier) : Long-term data archiving with retrieval times ranging from minutes to hours. Data won't be available immedeatly. We need to initiate a data restration to view the data. Restoration takes (1 min - 5 Hrs)
+Avai : 99.99 %, Durability : 99.999999999 (11 9's) 
+Data replicates across : >= 3 AZs
+
+--> Glacier Instant Retrieval : Long-lived archive data accessed once a quarter with instant retrieval in milliseconds. 
+
+--> Glacier Deep Archieve : Long-term data archiving with retrieval times ranging from 12 hrs. Data won't be available immedeatly. We need to initiate a data restration to view the data. Restoration takes (5 - 12 Hrs)
+Avai : 99.99 %, Durability : 99.999999999 (11 9's) 
+Data replicates across : >= 3 AZs
+..
+S3 Intelligent Tier : If we have unknown access pattern, we can choose. 
+Avai : 99.9 %, Durability : 99.999999999 (11 9's) 
+Data replicates across : >= 3 AZs
+
+RRS : Redused Redundancy Storage : Not Recommanded : Less durability.. 
+Durability : 99.99%, As we have less durability we have high chances to loss the data when compared to another storage classes.
+
+
+S3 Pricing : 
+--> How much data we are storing.
+--> How many GET/PUT operations (uploads/downloaded object count)
+--> Data retrivals
+
+Glacier data retrival : 
+Bulk retrieval : Typically within 5-12 hours.
+Standard retrieval : Typically within 3-5 hours.
+Expedited retrieval : Typically within 1-5 minutes when retrieving less than 250 MB.
+
+______________________________________________________________________________________
+
+Task : 
+--> Enable "Free tier alerts". Login using root user/iam user with admin permissions..
+Preferences --> Billing preferences --> Receive Free Tier Usage Alerts --> Enable and enter valid email address.
+
+Task 2 : Create an s3 bucket, Upload an object, Make object public accesable.
+
+________________
+
+If you are typing "Delete" ==> you'll get delete Marker. 
+If you are typing "perm Delete" ==> You wont get Delete marker.
+
+Delete the "Delete Market" to get your object back.
+
+_________
+
+Version : AWS maintains multiple copies in s3 bucket. 
+--> Defaultly versioning will be in Suspended state.
+
+--> When versioning is enabled on bucket, If we delete an object
+
+Versioning : HIDE
+--> S3 will show most recent uploaded object only / Current version objects.
+--> We will get a Delete Marker. 
+--> TO get object back / undo delete, Set Version to SHOW, Delete the delete marker.
+
+Versioning : SHOW
+--> If we delete an object, it deletes permanently.
+_____________________________________________________________________________________
+
+
+Storage classes
+Versioning
+Life Cycle rules
+Replications
+Static website hosting
+Encryptions
+Bucket policy
+Improve s3 perf.
+Bucket lock
+
+Life Cycle Management Rule : 
+--> We can apply Rule to entire bucket
+--> We can limit rule to a prefix (Folder)
+--> We can limit rule to objects by specifing a "Tag"
+
+
+S3 Standard --> StandardIA/IT --> Glacier --> Delete
+S3 Standard --> Glacier --> Delete
+S3 Standard --> Delete
+ 
+____________________
+
+CRR / SRR : 
+--> Source bucket and destination bucket must be enabled with versioning. 
+--> Existing objects will not replicate to the destination bucket.
+--> All future / subsequent uploads will replicate to destination bucket. 
+
+RTC : Replication time control : Data replicates to destination bucket with in 15 Min. (99.99% of the data) : COST US
+
+___
+
+Data transfer from One region to another region "cost us".
+Data transfer within a region won't cost us anything.
+_______________________
+
+aws s3 sync s3://source targetpath		==> 12:00AM   (task scheduler / cron job)
+_______________________
+
+Task : Create a bucket in mumbai, Configure Versioning. 
+Create another bucker in Mumbai region only.. configure same region replication between these buckets.
+
+Task 2 : Create a Life CYcle management rule to transit current version objects from s3 standard to Delete after 2 Days.
+Transit previous version objects to Delete after 1 Day.
+
+Task 3 : Create a policy to allow everything in an AWS account, But user should be able to create a bucket in "ap-south-1" region only.
+--> Create a bucket in "mumbai", it should work... But if he try to create bucket in any other region it should fail.
+
+1. Create a policy allow anything but only on mumbai region. (copy policy from AdministratorAccess)
+2. Create an IAM user and allocate Newly created policy
+3. Login as IAM user, Navigate to S3, Try to create a bucket in mumbai, should allow.. SHould deny if you choose any other region.
+

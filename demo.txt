@@ -1,0 +1,418 @@
+CC : Dropbox.. GDrive..
+
+Laptop / Mobile : Uploading the data to GDrive/Dbox.. : We can access this data anywhere from the world.. (Internet) : Another user : Storage
+
+
+Cloud COmputing : COmputing resources : (Network, Storage, Servers, Database) : 
+Pay-as-you-go : Pay for the resources you actually used
+
+Tenancy : 
+--> Shared : underlying h/w shared with another customers
+--> Dedicated : Underlying h/w won;t share with another cust.. Dedicated to same user.
+
+
+Physical Server : COmpatability 
+Virtual Server : Upgrade / Downgrade
+
+Core Infra Services : Compute, Storage, Network, Hosting, Database, IAM, Security, Application, Migration
+
+CAPEX : Capital Expendature : Very less / No Capital Expen : No Upfront : 
+OPEX : Operational Expendature : Less OPEX : 
+
+100 : small server : deliver
+10k : medium server : 
+100M : Large 
+
+Pay-as-you-go : 
+Pay-as-you-grow : 
+
+_______________________________________________________________________________________
+
+Service Models : SaaS, PaaS, IaaS
+Deployment Models : Public, Private, Community, Hybdrid
+
+________________________________________________________________________________________
+
+
+Deployment models : 
+--> Public Cloud : Open for all.. ex: aws, azure, gcp, rackspace, ibm cloud..
+	Maintenance: Service Provider
+
+--> Private Cloud : Open for Individual organisation..	
+	Main : dedicated team of org / AMC to 3rd party org
+
+--> Community Cloud : Group of org, they build the infra and only they use the infra..
+	Main : dedicated team of one the org / AMC to 3rd party org
+
+--> Hybrid Cloud : Combination of one or more cloud platforms.. Ex: Onprem + aws / aws+ azure / aws +gcp.. Main : Depends on the infra.. 
+
+aws direct connect : Dedicated connection between local network to aws..
+VPN
+_________________________________________________________________________________
+
+Service Models of Cloud Computing : 
+
+Traditional Model : On-Premise : 
+
+Requirement : i n eed a webiste, need to work Anywhere from the world.
+--> SaaS : Lightsail
+--> PaaS : Beanstalk
+--> IaaS : ec2
+
+Requirement : Build a website  and deliver to everyone..!!
+
+____________________________________________________________________________________
+
+____________________________________________________________________________________
+
+D: 15/05/2023
+
+Region : geographical location or physical location.. No technical defination.. 
+31 Regions across the globe..
+
+4 regions : 
+2 china regions
+2 us-gov-cloud
+
+AZ / Availability Zone : Data Center or combination of multiple DCs.. present with in region.. Every region contains min of 3 AZs..  99 AZs.. 
+
+Edge Location : Cached location : CDN endpoints.. Content delivery network.. Designed to reduse latency.. Most frequently accessed data cache near to customer locations.. When any request comes this will respond quickly, instead of sending that request to origin.. 
+
+____________________________________________________________________________________
+
+D: 16/05/2023
+
+
+IAM : Identity and access management : How to create users, how to manage permissions on aws.. 
+S3 : Simple Storage Service : Object based storage.. (AWS version of GDrive)
+EC2 : Elastic Compute Cloud : Service to Launch and Manage servers and load balancers.. 
+Route53 : AWS DNS Service : Domain names management and Hosting service in AWS..
+VPC : Virtual private Cloud : Creating networks on aws to run our servers and databases.. (Public ip, Private Ip, Vp creation, subnet)
+RDS : Relational Database Service : Creating dbs, High Availability, Backups, performance monitoring and tuning 
+Application services : sns, sqs, lamabda, cloudformation, cdk, cloud9, ecr, ecs, cicd (code commit, code build, code deploy and code pipeline).. 
+security services : waf, shield, nacl, cloudfront, trusted advisor
+Logging and monitoring : Cloudtral, cloudwatch and site247
+resume, projects, certifications overview.
+
+
+12 Months free tier limitations : 
+
+IAM : always free
+s3 : 5 gb standard storage 
+ec2 : 750 hrs/Month windows with t2.micro.. 
+1 x 31 days x 24 hrs = 744 Hrs
+VPC : Free
+RDS : 750 hrs/Month mysql/postgre/mariadb with db.t2.micro
+
+__________________________________________________________________
+
+https://avinash.s3.amazonaws.com/aws.pdf
+__________________________________________________________________
+
+D: 17/05/2023
+
+How to create an AWS account..
+
+Step 1 : aws.amazon.com/free --> root user email id --> Account name and confirm
+
+root user : Unrestricted access on AWS account. If you are login with email id, then you logged in as root user.
+
+production support / monitoring team / dba / aws admin: 
+Least privilages mechanism : Always LPM.. : provide permissions to perform his job.. 
+
+
+Step 2 : provide all contact information (Full name, address, pincode)
+
+Step 3 : provide payment information (Visa/master card/amex/discovery).. AWS deducts 2 INR and refund back with in 48-72 hrs..
+
+Step 4 : Identity verification
+	--. text verification
+	--> Call verification
+	
+	
+Step 5 ; Choose support plans
+
+1. Account and Billing : 24x7 support.. Any support plan supports this.. 
+2. Technical Support : Based on the support plan.. 
+
+Basic Support plan : Free.. 
+2--> No technical support from AWS. AWS Knowledge Base articles,, Re:post.. 
+trusted Advisor : Some core area checks
+
+Developer Support Plan : starts from 29$/Month... 
+2 --> With in 12-24 Local business hours we will get assiatance.. An AWS Associate.. Email support..
+1 user can raise tickets, but we can raise unlimited tickets..
+trusted Advisor : Some core area checks
+Case Severity : 
+General guidance: < 24 hours
+System impaired: < 12 hours 
+
+Business Support Plan : starts from 100$/Month
+2 --> With in 1 hours we will get assiatance..  AW AWS Engineer.. email, phone and chat support.. 
+Any user can raise tickets, we can raise unlimited tickets.. 
+Trusted Advisor : Full checks
+Case Severity : 
+General guidance: < 24 hours
+System impaired: < 12 hours
+Production system impaired: < 4 hours
+Production system down: < 1 hour
+
+
+Enterprise On-Ramp : Starts from 5,500$/month
+2 --> With in 30 min we will get assiatance.. An AWS Sr. engineer.. email, phone and chat support.. 
+Any user can raise tickets, we can raise unlimited tickets.. 
+Annual Architectural and Operational reviews by AWS
+Trusted Advisor : Full checks
+
+Case Severity : 
+General guidance: < 24 hours
+System impaired: < 12 hours
+Production system impaired: < 4 hours
+Production system down: < 1 hour
+Business/Mission-critical system down: < 30 minutes
+
+
+
+Enterprise SP : Starts from 15,000$/month
+2 --> With in 15 min we will get assiatance.. An AWS Sr. engineer.. email, phone and chat support.. 
+Any user can raise tickets, we can raise unlimited tickets.. 
+AWS Allocated a Dedicated TAM (technical account manager)
+Annual Architectural and Operational reviews by AWS
+AWS provides trainings on the services
+Trusted Advisor : Full checks
+
+
+Case Severity : 
+General guidance: < 24 hours
+System impaired: < 12 hours
+Production system impaired: < 4 hours
+Production system down: < 1 hour
+Business/Mission-critical system down: < 15 minutes
+
+_______________________________________________________________________________________
+
+D: 19/05/2023
+
+MFA : MultiFactor Authentication : Additional level of security for our login process.
+
+IAM : Identity and access management : We can create users, groups and we can manage user access on aws account.
+
+
+Root user : Unrestricted access on AWS account. 
+IAM user : Identity and access management : 
+
+
+iam-S3-admin : Manage S3 service, So he required s3full access.. 
+iam-ec2-admin : Manage ec2 service, so he required ec2full acess only.. 
+
+_______________________________________________________________________________________
+
+
+
+
+
+
+Hi please save the account details 
+
+Course: AWS
+Time: 7:30am
+Faculty: Mr. Avinash 
+
+Course Fees without videos: ₹8000/-
+Course Fees with videos: 12000/-
+Course Duration: 45 sessions 
+
+*Online student one time payment no installments Please.*
+
+*Bank Details*
+Name: Naresh i Technologies
+A/C No. 50200022639833 
+Bank: HDFC
+A/C Type: Current Account
+IFSC Code: HDFC0001627
+MICR Code: 500240035
+Branch Code: 001627
+Branch:  Ameerpet
+
+Note: If you want to use Phonepe or Google Pay then follow the below steps.
+
+You can find the option Bank Transfer in Phonepe and Google pay. There you can enter our bank account number and you can transfer the amount.  Please mention your Name on the receipt and send a email once the payment is done to support@nareshit.com.
+  
+For any Queries, You can Reach us on email support@nareshit.com 
+
+Please share your feedback to Mr. Srikanth NIT Admin 
+
+Thanks and Regards
+Mr. Srikanth NIT Admin 
+6302968665
+(WhatsApp chat only)
+
+_______________________________________________________________________________________
+
+For fee related queries send me a message in WhatsApp on 6302968665.
+
+Those paid the fee will receive the new link to your registered mail id by today evening 7pm
+
+If you haven’t received the new link by 7pm send me a in WhatsApp after 8pm on 6302968665
+
+_______________________________________________________________________________________
+
+Hi All, Srikanth is this batch admin please save his number : 6302968665 (Whastapp)
+
+
+Hi all please save the video links till Friday 
+
+AWS @ 7:30 AM (IST) by Mr.Avinash 
+Day-1 https://youtu.be/5ODwMg6XbDo
+Day-2 https://youtu.be/7_7XpGm1TTs
+Day-3 https://youtu.be/W6tXBFNIheE
+
+AWS Demos:
+
+Day-1 https://youtu.be/HY1cu2j2Hio
+Day-2 https://youtu.be/UkWrOQPzYv4
+Day-3 https://youtu.be/dP4739xEabM
+
+_______________________________________________________________________________________
+
+D: 23/05/2023
+
+IAM user with AdministratorAccess = root user - account/billing management
+
+Avinash_T : AdministratorAccess
+
+CLoudTrail : Logging service in AWS. It logs everything (including refresh also).
+--> Enabled by default. We dont have option disable it. 
+--> Defaultly it can store last 90 days logs.
+
+Password policy : We can enforce all IAM users to maintain specified standards while setting their own passwords.
+
+Credential report : It gives all IAM users last logged in, pwd expiration, creation data and accesskeys..
+
+_________________________________________________________________________________________________________
+
+Requirement : 
+root user : unrestricted access on aws env.. : Dont use this for day to day activities.. 
+
+Least privilages mechanism : provide only required permissions to perform his job : 
+
+
+
+Step 1 : provide username : "S3_Admin"
+Access type; Console Access.. Password and Sign-in URL
+
+Step 2 ; provide required permissions.
+
+Groups : Create a group, add permissions at group level and add this user to group.
+COpy permissions from another user : 
+Attach permissions directly : 
+
+Step 3: review and create user. 
+
+
+IAM user with Administrator Access = same as root user without account management permissions.
+
+================================================================================================
+
+Task 1 : create an AWS account and make it fully activated.
+
+Task 2 : Activate MFA for root user. Set alia for your root account.
+
+Task 3 : Create an IAM user, Allocate "S3FullAccess" to this user, Login as S3_user and verify his access on s3 service, Iam service & ec2 service. (He should be able to access only s3)
+
+Task 4 : Create an IAM user(Username : ec2_user), Allocate "EC2FullAccess" to this user, Login as ec2_user and verify his access on s3 service, Iam service & ec2 service. (He should be able to access only ec2)
+
+____________________________________________________________________________________
+
+D: 23/05/2023
+
+Policy : Set of Permissions on our aws account. Policy writtens in JSON format.
+--> AWS Managed - Job Function
+--> AWS Managed Policy
+--> Customer Managed Policy
+__________________
+
+Policy : Document contains set of permissions writtens in JSON format. Policy provide permissions on AWS resources for users/groups/roles.
+
+--> AWS Managed Policy : s3 (full, reaonly), ec2 (ec2read, moniroting, full)
+--> AWS Managed policy - Job Functions : Network Admin, Database Admin
+--> Customer Managed Policy : 
+
+
+
+Inline : Not a reusable policy. We can apply policy for specific resource.
+
+Requirement : IAM User required Full Access on AWS services, But not on "S3".
+
+**Deny always have highest privilages. If you all 100 times, but deny 1 times at any level, DENY will take effect. 
+
+S3 and EC2 Full Access As a single policy : 
+
+Task : Create a Policy to Activate MFA, if we associate this policy to an IAM user. 
+--> Create an IAM user, provide him "S3FullAccess"... Click on "security credentials", Go to Activate MFA option.. "Deny"... create a policy to allow only this particular operation.
+-> After associting this policy to S3user, it should allow him to enable/disable MFA.
+
+
+
+
+===========================================================================================
+
+--> AWS Managed Policy : Policy provided by AWS, Based on Service.
+--> AWS managed - Job function policy : policy provided by AWS, It is a combination of multiple Services. AWS provided this based on some standard jobs available in market.
+--> Customer Managed policy : 
+
+AdministratorAccess : He can access on all aws services.
+PowerUser : Adminstrator access - IAM + Apart from user management he is equal to admin user.
+readonly : he will get readonly access on all aws services. 
+
+
+
+Requirement : Create an IAM user, Give him "S3FUllAccess", Create a S3-Deny polic and asociate. test it. ==> Deny Taking effect.
+
+Requirement : I Need an IAM user, Who have AdministratorAccess, but no access to ec2.
+
+
+Task 1 : Create an IAM user, Provide him "AdministratorAccess" policy. Now try to access "Billing Dashboard". It gives error. 
+Fix this error and provide him billing access.
+
+Task 2 : I need an IAM user who have "Administrator Access", But no permissions on s3.
+
+Task 3 : Create a custom policy to activate MFA for IAM users. 
+	Create an IAM user, provide S3FullAccess. Login as this user and Now try to "Activate MFA". It will give error. Fix this errors and allow him to activate MFA.
+
+
+
+=====================================================================================================
+
+Slack sign-up Link: https://join.slack.com/t/awswithavinash/shared_invite/zt-1w3gnqe9c-ESh1IDL0K2n7MyKZRg1i3Q
+
+slack login: https://awswithavinash.slack.com/
+
+Daily class Notepad material Link : https://github.com/avizway1/may2023
+
+AWS Book Link to download : https://avinash.s3.amazonaws.com/awsbyavinash.pdf
+
+Course content : https://avinash.s3.amazonaws.com/aws.pdf
+
+
+AWS LAB Sessions for All Batches @ 2PM to 4PM (Mon to Sat)
+Meeting Link: https://zoom.us/j/83939072968
+Password: 652247
+Use above link to join to discuss your queries with Lab Instructors
+
+=====================================================================================================
+
+For daily class join : Please get your login credentials from Naresh Team. Don't depend only on whatsapp messages.
+
+https://classes.nareshit.com/
+
+
+Mr. Srikanth NIT Admin 
+6302968665
+(WhatsApp chat only)
+
+
+
+
+
+

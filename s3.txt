@@ -45,7 +45,6 @@ S3 Free Tier ELigibility :
 --> 2000 PUT (Upload) / 20,000 GET (Download)
 _______________________________________________________________________________
 
-
 GDrive : 100 gb plan						S3	: no pre provisioning req
 
 20 gb Daily									S3-Standard
@@ -84,6 +83,7 @@ Data replicates across : >= 3 AZs
 Avai : 99.99 %, Durability : 99.999999999 (11 9's) 
 Data replicates across : >= 3 AZs
 ..
+
 S3 Intelligent Tier : If we have unknown access pattern, we can choose. 
 Avai : 99.9 %, Durability : 99.999999999 (11 9's) 
 Data replicates across : >= 3 AZs
@@ -110,7 +110,9 @@ Preferences --> Billing preferences --> Receive Free Tier Usage Alerts --> Enabl
 
 Task 2 : Create an s3 bucket, Upload an object, Make object public accesable.
 
-________________
+=================================================================================================
+
+D: 
 
 If you are typing "Delete" ==> you'll get delete Marker. 
 If you are typing "perm Delete" ==> You wont get Delete marker.
@@ -132,17 +134,6 @@ Versioning : HIDE
 Versioning : SHOW
 --> If we delete an object, it deletes permanently.
 _____________________________________________________________________________________
-
-
-Storage classes
-Versioning
-Life Cycle rules
-Replications
-Static website hosting
-Encryptions
-Bucket policy
-Improve s3 perf.
-Bucket lock
 
 Life Cycle Management Rule : 
 --> We can apply Rule to entire bucket
@@ -184,4 +175,20 @@ Task 3 : Create a policy to allow everything in an AWS account, But user should 
 1. Create a policy allow anything but only on mumbai region. (copy policy from AdministratorAccess)
 2. Create an IAM user and allocate Newly created policy
 3. Login as IAM user, Navigate to S3, Try to create a bucket in mumbai, should allow.. SHould deny if you choose any other region.
+
+
+
+
+
+https://s3.ap-south-1.amazonaws.com/avinash.co.in/Demo+copy.txt
+
+Standard format : Works for any bucket.. : https://s3.regioncode.amazonaws.com/bucketbname/objectname
+
+https://avinash-public-test.s3.ap-south-1.amazonaws.com/s3.txt
+
+Virtual Path : This works if we dont have . in bucket name :  https://bucketname.s3.regioncode.amazonaws.com/objectname
+
+
+
+
 

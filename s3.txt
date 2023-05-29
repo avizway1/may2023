@@ -112,7 +112,7 @@ Task 2 : Create an s3 bucket, Upload an object, Make object public accesable.
 
 =================================================================================================
 
-D: 
+D: 26/05/2023
 
 If you are typing "Delete" ==> you'll get delete Marker. 
 If you are typing "perm Delete" ==> You wont get Delete marker.
@@ -177,9 +177,6 @@ Task 3 : Create a policy to allow everything in an AWS account, But user should 
 3. Login as IAM user, Navigate to S3, Try to create a bucket in mumbai, should allow.. SHould deny if you choose any other region.
 
 
-
-
-
 https://s3.ap-south-1.amazonaws.com/avinash.co.in/Demo+copy.txt
 
 Standard format : Works for any bucket.. : https://s3.regioncode.amazonaws.com/bucketbname/objectname
@@ -187,6 +184,175 @@ Standard format : Works for any bucket.. : https://s3.regioncode.amazonaws.com/b
 https://avinash-public-test.s3.ap-south-1.amazonaws.com/s3.txt
 
 Virtual Path : This works if we dont have . in bucket name :  https://bucketname.s3.regioncode.amazonaws.com/objectname
+
+
+
+_______________________________________________________________________________
+
+Event notifications : 
+
+--> SNS : Simple Notification Service : 1000 EMAILs Free Tier eligibility
+--> SQS : Simple Queue Service
+--> Lambda 
+
+--> Make sure you edit the SNS topic's "Access Policy to everyone".
+
+
+==========================================================================================
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": "*",
+            "Condition": {
+                "ForAllValues:StringEquals": {
+                    "aws:RequestedRegion": "ap-south-1"
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "s3-object-lambda:*",
+            "Resource": "*"
+        }
+    ]
+}
+
+
+__________________________________________________________________________________________
+
+
+D: 29/05/2023
+
+--> In-Transit Encryption : 
+	SSL (Secure socket layer) / TLS (Transport layer secure)
+
+--> SSE (Server Side Encryption) / At-rest : 
+
+SSE-S3 : S3 platform generates and manages the key material. whoever have valid access on S3 platform can decrypt/view the data. (An encryption key that Amazon S3 creates, manages, and uses for you). AES-256
+--> We need to use this to make any data public.
+
+SSE-KMS : Key Management Service : 
+	KMS (AWS managed keys) (aws/s3) DMK (Default Master Key) : KMS Service generates and manages the key material. whoever have valid access on S3 platform can decrypt/view the data. We cannot delete these keys. 
+--> We cannot make data public using this keys.
+
+	 CMK (Customer managed keys) : KMS Service generates and manages the keymaterial.
+Along with S3 platform, the IAM user need to have valid permissions on ENCRYPTION KEY also. 
+NO FREE TIER ELIGIBILITY.
+
+	SSE-C (Customer Provided Key): Customer generates and upload the key material to KMS and KMS uses this key material to encrypt/decrypt the data. Customer can change the key material at any time. 
+NO FREE TIER ELIGIBILITY.
+
+
+--> CSE (Client Side Encryption) : 
+Before uploading data to s3 platform, we can use our own software/applications to encrypt the data. That encryptrd data we can send to s3. AWS is not completely responsible for this mechanism.
+
+Encryption key generation : 
+--> Choose key type : Symmetric /Asymetric : Symetric as s3 supports
+--> Choose key Administrator
+--> Choose Key Users
+--> Review and create
+
+____________________________________________________________________________
+
+Task : Create an IAM user, provide S3 full access. Restrict him to work only on "mumbai region". 
+
+Task 2 : Enable Encryption on s3 bucket and test it. (SSE-S3/AWS Managed key KMS-DMK)
+
+
+___________________________________________________________________________
+
+S3 Static Website Hostic : 
+
+--> We need to make data public read, then only our website will deliver. 
+--> Purchased Domain name should be same as Bucket name. 
+http://learnaws.co.in.s3-website.ap-south-1.amazonaws.com  ==> learnaws.co.in
+
+http status codes :
+2XX : OK/Success
+3XX : Redirection
+4XX : Client sider error
+5XX : Server sider error
+
+Task : Download a template from Internet. Deliver the webiste using s3 - static webiste feature.
+
+
+https://www.free-css.com/free-css-templates
+
+
+
+
+
+
+
+____________________________________________________________________________________________
+
+Deny upload object operation on a particular bucket. : Bucket policy
+
+Bucket ARN : arn:aws:s3:::avinash.bucket
+IAM User ARN / Principal : arn:aws:iam::501170964283:user/s3user
+Effect : Allow / Deny : Deny
+Action / Operation : PutObject, DeleteBucket
+
+
+Object level / Inside bucket possible operation : arn:aws:s3:::avinash.bucket/*
+Bucket level : arn:aws:s3:::avinash.bucket
+if you dont know bucket level/object level ; give both
+(arn:aws:s3:::BUCKETNAME,arn:aws:s3:::BUCKETNAME/*)
+
+__________________________________________________________________________________________
+
+Object Lock : 
+--> Versioning must be enabled.
+Permanently allows objects in this bucket to be locked. Additional Object Lock configuration is required in bucket details after bucket creation to protect objects in this bucket from being deleted or overwritten.
+
+Governance : Users with specific IAM permissions can overwrite or delete protected object versions during the retention period.
+
+Compliance : No users can overwrite or delete protected object versions during the retention period.
+_____
+
+
+Task : Try to access s3 using 3rd party applications. (S3 browser, Cyberduck, Cloudberry explorer, winscp)
+Steps ; Create an IAM user, generate Accesskey and SecretKey. Use this with 3rd party tool.
+
+Task 2 : What is presigned URL. Configure an object to generate a presign url to expire after 60 sec.
+
+Task 5 : limit an IAM user to work only on his specific bucket.
+
++++++++++++
+Requirement : IAM user has its s3 bucket, he need to get access on his own bucket. : IAM Policy
+https://s3.console.aws.amazon.com/s3/buckets/bucketname
+
+help : https://repost.aws/knowledge-center/s3-console-access-certain-bucket
+
+Requirement : Create an IAM user, Create a bucket for this user... Now, This user should get access only on his specific bucket..
+He should not able to view all the s3 buckets.
++++++++++
+
+Task 5 : Create an IAM user.. Provide him S3FullAccess.. But on a specific bucket "Deny" him to perform "DeleteObject, DeleteBucket, PutObject, getbucketpolicy"
+
+Task 6 : Create an S3 Bucket, Create an SNS topic add a subscriber.. Configure Events on s3 to trigger an email when Object creation and deletion happend.
+
+Task 7 : Apply IP restriction on bucket poliocy and test it.
+
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-IP
+
+
+=================================================================================
+
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/LogFormat.html
+
+
+
+
+
+
+
 
 
 

@@ -359,24 +359,16 @@ Do it with IAM policy first.. Then Do it with bucket policy.
 
 https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-IP
 
-
-
-
-
 =================================================================================
 
-
-
-
-
-
+D: 31/05/2023
 
 Performance : 
 3500 PUT Object per second per prefix
 5500 GET Object per second per prefix
 
 --> Increase the uniqueness for the object names.
---> Use more prefixes
+--> Use more prefixes (folders)
 
 ________________________________________________________________________________________
 
@@ -390,20 +382,12 @@ Storage Class Analysis : Analyze storage access patterns to help you decide when
 Cross-origin resource sharing (CORS)
 The CORS configuration, written in JSON, defines a way for client web applications that are loaded in one domain to interact with resources in a different domain.
 
+CORS : https://www.youtube.com/watch?v=YrfDLrSVxQ8&t=4s
+
 ________________________________________________________________________________
 
 FOr Put of new object, "read after write consistency". (If upload success, we can start accessing the data without any delay)
 Eventual consistenacy For overwrite an object / delete an object. (AFter delete shown as success, we may get response for the request for some milli seconds) (You have uploaded object with latest data and trying to access, you have chances to get previous data object) 
-
-__________________
-
-How to access s3 using 3rd party applications.!!
-Ans : S3 Browser, CyberDuck, WinSCP, CLoudberry explorer
-
-https://www.msp360.com/explorer/windows/amazon-s3.aspx
-
-
-Task : Try any of the s3 supported 3rd party application. 
 
 ________________
 
@@ -427,9 +411,11 @@ AWS Direct Connect : Dedicated connection between on-premise/local environment t
 Site-to-site VPN : Happens over the internet.
 
 
-
 https://aws.amazon.com/premiumsupport/knowledge-center/s3-console-access-certain-bucket/
 
+
+How to Perform multiPart upload to S3 : 
+https://www.youtube.com/watch?v=ZJaNTLKz334
 
 
 

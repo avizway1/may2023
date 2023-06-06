@@ -251,8 +251,6 @@ Task : Launch Linux ec2 instance and get connect to it.
 
 ________________________________________________________________________________________
 
-
-
 whoami		--> tells us as what user we are working.
 sudo		--> allow user to execute the command with root level permissions
 sudo su		--> Switch to root user
@@ -265,6 +263,8 @@ pwd			--> Print working directory
 mkdir		--> Create a Directory/Folder
 touch 		--> o bytes file/ plain file
 cd			--> Change directory
+cd ..		--> To come one step back from current path.
+rmdir		--> remove directory, if it is empty.
 rm -rf foldername/	--> Delete a directory that contains files
 
 copy and paste :  cp
@@ -304,6 +304,32 @@ path : /var/www/html/
 cd /var/www/html/
 
 Tool to Move the files to amazon linux ec2 instance : WinSCP
+
+--------
+
+EIP : Elastic IP Address : If you need a dedicated/fixed IP address for your ec2 instance, you can generate an EIP and associate it.
+-> EIP wont change even after performing STOP/START operation on ec2 instance.
+NO FREE TIER ELIGIBILITY. IT WILL COST YOU.
+
+
+
+
+Task 1 : Launch an amazon linux 2, make it as webserver and deliver custom web content.
+
+Task 2 : Launch an Amazon Linux 2, install nginx and deliver custom web page.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ________________________________________________________________________________________
 
@@ -395,8 +421,6 @@ mkfs -t xfs /dev/xvdf		--> Make file system and write it to Additonal volume
 mount /dev/xvdf newvolume/	--> mount addl volume to directory
 
 
-
-Task 1 : Launch an amazon linux, make it as webserver and deliver custom webcontent.
 
 Task 2 : Create a 2gb volume, attach it to ec2 instance and make it available. 
 

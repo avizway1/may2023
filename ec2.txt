@@ -312,26 +312,13 @@ EIP : Elastic IP Address : If you need a dedicated/fixed IP address for your ec2
 NO FREE TIER ELIGIBILITY. IT WILL COST YOU.
 
 
-
-
 Task 1 : Launch an amazon linux 2, make it as webserver and deliver custom web content.
 
 Task 2 : Launch an Amazon Linux 2, install nginx and deliver custom web page.
 
+===========================================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-________________________________________________________________________________________
+D: 07/06/2023
 
 How to deal with Volumes
 
@@ -421,11 +408,71 @@ mkfs -t xfs /dev/xvdf		--> Make file system and write it to Additonal volume
 mount /dev/xvdf newvolume/	--> mount addl volume to directory
 
 
-
-Task 2 : Create a 2gb volume, attach it to ec2 instance and make it available. 
-
-df -Th ==> should show your 2 gb volume.
-
 =================
+
+
+--> Above mount is temp mount only.. it won't available after the instance reboot.
+--> To make this volume perm mount to the directory, Add entry in "/etc/fstab" file.
+--> Get the entry information from "/etc/mtab" file. 
+
+--> cat /etc/mtab		--> Grab the entry related to newly added addl volume
+
+/dev/xvdb /home/ec2-user/newvolume xfs rw,relatime,attr2,inode64,noquota 0 0
+
+--> vim /etc/fstab.. Write the above entry, save and quit the editor. (Do not edit the existing entry).
+
+mount -all
+__________
+--> Increase the volume size the "Cosole" first, then execute the below command..!!
+
+We can use "xfsprogs" to increase existing volume size. 
+
+yum install xfsprogs
+
+--> xfs_growfs -d /volume-Mountpoint
+--> xfs_growfs -d /home/ec2-user/newvolume
+
+
+===========================================================================
+
+--> Increasing volume is possible, But redusing volume is not possible.
+
+
+To verify File system status from a volume : file -s /dev/xvd*
+--> If out put : data : no file system
+
+new volume name : /dev/xvdf
+
+Step 1 : Write File system			mkfs -t xfs /dev/xvdf
+Step 2 : Create a folder			mkdir newvolume
+Step 3 : Mount volume to folder		mount sourcefolder volumename		mount /dev/xvdf newvolume 
+
+
+New volume name : /dev/xvdg
+
+step 1 : mkfs -t xfs /dev/xvdg
+step 2 : mkdir 2gbvolume
+step 3 : mount /dev/xvdg 2gbvolume/
+
+Step 4 : Grab the entry information from /etc/mtab file
+
+/dev/xvdf /home/ec2-user/newvolume xfs rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota 0 0
+/dev/xvdg /home/ec2-user/2gbvolume xfs rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota 0 0
+
+Step 5 : Edit the "/etc/fstab" file and write the information grabbed from "/etc/mtab" file.
+
+============================================================================================
+
+
+Task : Launch an ec2 instance, Create a 1gb volume, associate it with ec2 instance.. Make 2 gb volume available at os level and write some data into it. (Reboot and verify)
+df -Th after reboot, also should show 2gb volume.
+
+Task 2 : Increase the size of 2gb volume to 4 gb and verify with df -Th.
+
+Task 3 : Launch another ec2 instance in same AZ as existing ec2 instance.. Detach the volume from instance 1 and attach it to newly launched ec2 instance. You should be able to see all the data.
+
+Task 4 : Launch an Windows ec2 instance, Create a 2 gb volume, associate it with ec2 instance.. Make 2 gb volume available at os level and write some data into it. (Reboot and verify). 
+
+Task 5 : Add 2 more gb size to Task 4 Volume and extend volume at OS level.
 
 

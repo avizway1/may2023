@@ -548,3 +548,12 @@ Task 1 : Launch an ec2 instance in ap-south-1a.. Create a "New volume with 1 gb 
 Task 2 : Launch Another ec2 instance in ap-south-1b..
 Get the 2gb volume data from instance 1a to newly launch 1b ec2 instance.. Make Same volume available to "1b instance"..!!
 
+
+
+
+
+
+https://join.slack.com/t/awswithavinash/shared_invite/zt-1w3gnqe9c-ESh1IDL0K2n7MyKZRg1i3Q
+
+
+

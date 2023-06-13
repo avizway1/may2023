@@ -590,11 +590,9 @@ How to create a new user in Amazon Linux 2, how can we provide ssh access to ins
 (Create a new keypair for this use / you can use existing keypair we have for ec2-user)
 
 
-
-
-
 _________________________________________________________________________________________
 
+D: 
 
 --> Cloud watch : Service to monitor all AWS resources i.e; s3, ec2, rds.. 
 --> We can monitor CPU, Disk and network for ec2 instance.
@@ -625,8 +623,57 @@ service httpd start
 chkconfig httpd on
 echo "<h1>This is my Second webserver</h1>" > /var/www/html/index.html
 
+____________________________________________________________________________________
 
 
+Vertical Scaling : Upgrading same instance resources.. t2.micro --> c5.2xlarge
+Horizantal Scaling : Distribute application load to multiple ec2 instances.. 
+
+Classic ELB : Layer 4/7 LB.. : Outdated.. : http, https, tcp, udp.. 
+Application ELB : Layer 7 ELB.. : http and https
+Network ELB : Layer 4 ELB.. : TCP, UDP, TLS 
+Gateway ELB : GENEVE / 3rd party security virtual applicances.. 
+
+**Please select at least two Subnets in different Availability Zones to provide higher availability for your load balancer.
+
+
+For ELBs, We will get DNS Endpoint..
+Roundrobin algorithm.. 
+
+If you want to view IP address of an ELB, 
+--> Navigate to "Network interfaces" and observe, You can get IP of ELB.
+--> nslookup "ELB-DNS-NAME"
+___________________________________________________
+
+Target Group : Each target group is used to route requests to one or more registered targets. When you create each listener rule, you specify a target group and conditions. When a rule condition is met, traffic is forwarded to the corresponding target group.
+
+Application ELB : http and https
+
+Application Load balancing algorithm : 
+--> Round robin
+--> Least outstanding requests
+
+--> We cannot assign a dedicated IP address for our Application ELB.
+
+Network ELB : TCP.. 
+--> Flow Hash algorithm.
+--> We CAN assign a dedicated IP address for our network ELB.
+
+Application LB Supports path based routing, also supports Microservices.
+
+millions req/sec : NLB
+
+ELB Access Logs : Logging on ELB. Destination is s3.
+___________________________________________________________________
+
+Free Tier : 750 hrs/month
+
+-----------------------
+
+Task : Create alb, and deliver webpapes on port 80, 8888, 8080. 
+
+
+what is telnet and how to use telnet, test it with an ec2 instance on port 22.
 
 
 

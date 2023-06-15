@@ -731,9 +731,10 @@ Configure Alarm to set Desired capacity as 1, when cpu utilisation is =<10.
 Configure scheduled scaling to set DC as 3 instance at specific time and test it. 
 
 
-
 Optional task : Try "stress" command to put load on ec2 instance and test high usage.
 
+stress --cpu 1 --timeout 900
+nproc --> cpu count
 
 ________
 
@@ -746,9 +747,9 @@ ________
 7 : Configure Versions for Launch Tempplate. 
 
 
-
 ============================================================================================
 
+D: 15/06/2023
 
 EFS : Elastic File System : File Share : Shared Storage solution for Multiple ec2 instances. : 
 --> Network File System : NFS v4.1 : Port 2049
@@ -758,14 +759,87 @@ EFS : Elastic File System : File Share : Shared Storage solution for Multiple ec
 
 mkdir server1
 
-sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-0b7b1937bf7ebbeb6.efs.ap-south-1.amazonaws.com:/ shared
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-0b7b1937bf7ebbeb6.efs.ap-south-1.amazonaws.com:/ (shared)
 
 sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-0b7b1937bf7ebbeb6.efs.ap-south-1.amazonaws.com:/ /var/www/html/
+
+
+==> For windows OS we can use FSx, Works with SMB Protocol (Server message block)
+
+_______________________________________________________________________________________
+
+--> Create a security group and open NFS protocol. 
+			--> Open for entire VPC IP address
+			--> Open for ec2 instance private IP addresses
+		** --> Open for ec2 instance Security group (pipeline mechanism)
+
+
 
 Task : Create EFS and Mount it to multiple ec2 instances. Deliver Web Content to both the instances from EFS.
 
 
+Task : Launch an ec2 instance, connect to it, Create EFS.. Install httpd in your ec2 instance.. Mount EFS to /var/www/html/ and create index.html... 
+==> Now create a GOLDENAMI.. 
+==> Configure ASG with this GOLDENAMI.. COnnect to any of the ec2 instance, modify the content.. this modification should reflect in all instance.. 
 
+============================================================================================
+
+Plecement Groups : 
+--> Cluster PG
+--> partition PG
+--> Spread PG
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html
+
+======================================
+
+Platform : Windows
+Platform : Linux
+
+Naming Standards : P-Wi-wt-ad :   P-LI-WT-HD :
+		: S-Li-ap2-c1 : 
+
+s : Staging / NonProd
+u : uat 
+p : production
+
+wi : Windows
+li : Linux
+wt : app code, tw : app code
+c1/c2 : Client id 
+
+
+____________________________________________________________________________________________
+
+Eventbridge : 
+
+--> Event Driven process
+--> Scheduled process
+--> Trigger both
+
+ Event Bridge : 
+
+ {"version":"0","id":"eec4eda2-6639-e7b3-150d-c6461f1f0686","detail-type":"EC2 Instance State-change Notification","source":"aws.ec2","account":"501170964283","time":"2022-04-08T02:59:33Z","region":"ap-south-1","resources":["arn:aws:ec2:ap-south-1:501170964283:instance/i-00f56eba78b7b4e65"],"detail":{"instance-id":"i-00f56eba78b7b4e65","state":"stopped"}}
+
+ Sample Event : 
+
+ INPUT PATH:
+
+ {"instance-id":"$.detail.instance-id", "state":"$.detail.state", "time":"$.time", "region":"$.region", "account":"$.account"}
+
+ INPUT TEMPLATE: 
+
+ "At <time>, Status of your EC2 instance <instance-id> in the AWS Region <region> has changed to <state>."
+
+ https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html
+ https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html#eb-cron-expressions
+
+
+Task 1 : Configure Eventbridge to stop an ec2 instance at a particular time using Crontab. (10:30 Am)
+
+Task 2 : Configure to stop an ec2 instance after 5 minutes, trigger an email with custom email format.
+
+Task 3 : Configure to get an alert when someone deleted an s3 bucket.
 
 
 

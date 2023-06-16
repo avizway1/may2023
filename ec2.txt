@@ -501,12 +501,7 @@ MultiAttach : https://www.youtube.com/watch?v=2j8R3ajSo3s
 
 ** We cannot decrease the size of an EBS volume. Only increase is possible.
 EBS VOlumes : Always use EBS volumes only.
-Instance store volumes : We really don't use this in real environments.   (NO FREE TIER ELIGIBILTY)
-	--> Also called as Ephemeral storages (Temporary storage).
-	--> We cannot STOP/Start the instance.
-	--> Storage will be delivered from underlying host/physical resources.
-	--> If required, we can reboot. We don't loss any data.
-	--> If underlying h/w failure happens, we'll loss all the data.
+
 
 Snapshot : Backup copy of an EBS volume.
 
@@ -835,12 +830,35 @@ Eventbridge :
  https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html#eb-cron-expressions
 
 
-Task 1 : Configure Eventbridge to stop an ec2 instance at a particular time using Crontab. (10:30 Am)
+Task 1 : Configure Eventbridge to stop an ec2 instance at a particular time using Crontab. (9:15 Am)
 
 Task 2 : Configure to stop an ec2 instance after 5 minutes, trigger an email with custom email format.
 
 Task 3 : Configure to get an alert when someone deleted an s3 bucket.
 
 
+________________________
+
+Instance store volumes : We don't use this in real environments.   (NO FREE TIER ELIGIBILTY)
+	--> Also called as Ephemeral storages (Temporary storage).
+	--> We cannot STOP/Start the instance.
+	--> Storage will be delivered from underlying host/physical resources.
+	--> If required, we can reboot. We don't loss any data.
+	--> If underlying h/w failure happens, we'll loss all the data.
+
+________________________
+
+Instance Isolation : https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjr993FsAyS65uL4QPbGu8n_JcB6Fwq6jDylWglIapsQQjHfbcbir83OT-I-_a-nhvvo8&usqp=CAU
+
+Dedicated and Shared tenancy :
+--> Shared tenancy : underlying hardware shared with multiple customers.
+--> Dedicated tenancy:
+	--> Dedicated instance : Dedicated instance provided by aws. No control on backend process.
+	--> Dedicated host : We can apply licenses at underlying physical resources. Also, we can launch multiple instances on a dedicated host.
 
 
+----------------------
+
+AWS Cli and Roles : 
+
+	

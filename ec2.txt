@@ -914,9 +914,9 @@ service httpd start
 chkconfig httpd on
 copy data from s3 to ec2		(--recursive)
 
-
-
 ____________________________________________________________________________________________
+
+D: 19/06/2023
 
 Systems Manager run command :
 --> All instance must associated with "SSM ROle". 
@@ -930,7 +930,7 @@ AWSSupport-RunEC2RescueForWindowsTool
 Task : Make linux ec2 instance as webserver without logging to OS level.
 
 Task : Change the timezone of an windows ec2 instance using ssm run command. (tzutil /s "India Standard Time")
-___
+______________________________
 
 ElasticBeanstalk : It provides preconfigured platforms.
 --> Python, java, go, ruby, php, .net

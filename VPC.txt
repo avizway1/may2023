@@ -98,17 +98,17 @@ CIDR : Classless InterDomain Routing :
 Public Subnet : Internet facing subnet.. :
 Private Subnet : Non-Internet facing subnet.. : 
 
-How big VPC we required.?	300 Instance	Ans : /23 (512 = 512-5 = 507 Usable IPs) (192.168.0.0/23)
-How many subnets we required within the VPC..?		Ans : 2
-How many public SUbnets required within vpc..?		Ans : 1 (192.168.0.0/25)
-How many private SUbnets required within vpc.?		Ans : 1 (192.168.0.128/25)
-Are you going to create any subnets in future.?		Ans : Yes (Have some IPs for future use).
-													(192.168.1.0/25, 192.168.1.128/25)
+How big VPC we required.?		Ans :  1000 Instances..  : 192.168.0.0/21
+How many subnets we required within the VPC..?		Ans : 6
+How many public SUbnets required within vpc..?		Ans : 2 (192.168.0.0/24, 192.168.1.0/24)
+How many private SUbnets required within vpc.?		Ans : 4 (192.168.2.0/24, 192.168.3.0/24, 192.168.4.0/24 and 192.168.5.0/24)
+Are you going to create any subnets in future.?		Ans : Yes (Have some IPs for future use). (192.168.6.0/24 and 192.168.7.0/24)
 
-ap-south-1a : Public
-ap-south-1b : private
 
-SUbnet : ap-south-1a : subnet1 & Subnet 2
+Pubic Subnets : Place one public-1 subnet in ap-south-1a and public subnet-2 in ap-south-1b.
+Pubic Subnets : Place Private subnet-1 in ap-south-1a and another one in ap-south-1b.
+
+
 
 Public Subnet : Internet facing.. : ELB, Jump/ Bastian Host.. 
 Private Subnet : DBs, Application, Web servers.. 

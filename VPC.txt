@@ -134,6 +134,8 @@ Step 4 : Create RouteTables and Associate appropriate Subnets, add required rout
 
 Step 5 (Optional) : Navigate to Subnets, Choose "Public SUbnet", Actions, "Modify auto assign public ip settings", Enable.
 
+Step 6 (Optional) : Go to VPC, "Edigt VPC Settings", and "Enable DNS hostnames" to get DNS host names. Its required for our RDS Clusters.
+
 
 JUMP Server / Bastian Host : Is a Dedicated EC2 instance, Runs in CustomVPC PUblicSUbnet and can be used to connect to all the "Private Subnet" ec2 instances.
 
@@ -244,5 +246,50 @@ Site-to-site vpn settings
 
 Task ; Practice entire VPC (except NAT gateway : Use NAT Instance)
 
+
+
+--------------------------------
+
+permissions for flowlogs role policy:
+
+--> create a policy
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:DescribeLogGroups",
+                "logs:DescribeLogStreams",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+---
+
+Create a role and associate above policy to role you are creating.
+
+Set rust entity as below:
+
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "vpc-flow-logs.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
 
 

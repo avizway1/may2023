@@ -88,6 +88,12 @@ Task 1 : Launch an Mysql RDS db instance in CUstomVPCs Private SUbnet. Launch an
 
 Task 2 : Restore the shared sample db to the rds instance. 
 
+Task 3 : Install mysql workbench in your local laptop. Run your mysql rds cluster in "customvpc- Private Subnet", Now connect to this instance from your local laptop over ssh connection.
+--> Launch an amazon linux 2 instance in customvpc-publicsubnet.
+
+reference video: https://www.youtube.com/watch?v=qulcnNu8g7o
+
+
 _________________________________________________________________________________________
 
 
@@ -132,6 +138,13 @@ percona xtra backup
 Restore to point in time : You are creating a new DB instance from a source DB instance at a specified time.
 
 ___
+
+
+Task : Launch postgresql in customvpc private subnet, and install pgadmin in jump server and connect to it.
+
+----------------------------------
+
+
 
 Task 1 : https://aws.amazon.com/getting-started/hands-on/amazon-efs-backup-and-restore-using-aws-backup/?trk=gs_card
 

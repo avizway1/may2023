@@ -95,30 +95,11 @@ Database migration : https://www.youtube.com/watch?v=iRhJDGp-ew8 (OLD)
 
 ==============================================================================
 
-Task : Launch an ec2 instance in Mumbai region.. Migrate this ec2 instance from mumbai region to N Virginia region using "CloudEndure Migration".
 
-Video : https://youtu.be/SXuOjfKpIrs
+Migrate Server From One region to another region: DATA TRANSFER COST APPLY:  
+https://www.youtube.com/watch?v=fIEwoFaXExQ
 
-
-
-Task 2 : Add Cloudfront Distribution to the Project 1 resources.
-
-
-
-
-
-==============================================================================
-
-1. Launch an ec2 instance and use Former2 browser extension and generate the CF script and deploy it. 
-
-2. Create an s3 bucket and configure lifecycle rule. Use Former2 to generate the cft and deploy it by changing the bucket name and test it.
-
-3. Launch an ec2 instance using cloudformation template. While launching use userdata to execute the commands and make post 80 and 22 open for everyone. Deploy it and test it.
-
-Do the above tasks with the help of chatgpt, if required. 
-
-
-
+--> Launch an ec2 instance in Mumbai region, configure web server..  Migrate this instance to "mumbai" using MGN Service.
 
 
 

@@ -55,7 +55,31 @@ google.com --> Google
 	--> FOr Lambda role Make sure you associate "AWSLambdaVPCAccessExecutionRole"
 
 
-task : Am sharing some lambda functions... Deploy the lambda functions and test it. 
+
+-------------
+
+Task : Am sharing some lambda functions... Deploy the lambda functions and test it. 
+(1. Volume Status check
+2. Volume encrytption check
+3. Instance Stop
+4. Instance Start)
+
+Task : Create an s3 bucket, When we upload any object to s3 bucket, It should trigger "Stop-Instance" lambda function and instance need to stop.
+
+Task  : What ever the file names starting with "A/a" should move to another s3 bucket.
+
+Task  : What ever the file names ending with ".bkp" should move to another s3 bucket.
+
+Task : Create a lambda function to perform telnet test.  get output as "Telnet success" or "telnet failed".
+
+telnet google.com 443
+
+
+
+
+
+
+
 
 _____________________________________________________________________________________
 

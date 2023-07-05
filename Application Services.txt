@@ -74,15 +74,9 @@ Task : Create a lambda function to perform telnet test.  get output as "Telnet s
 
 telnet google.com 443
 
-
-
-
-
-
-
-
 _____________________________________________________________________________________
 
+D: 05/07/2023
 
 AWS Cloudformation : IaC Infrastructure as Code : JSON/YAML : 
 --> it's free. 
@@ -105,13 +99,12 @@ https://aws.amazon.com/blogs/machine-learning/plant-leaf-disease-detection-with-
 
 2. Create an s3 bucket and configure lifecycle rule. Use Former2 to generate the cft and deploy it by changing the bucket name and test it.
 
-3. Launch an ec2 instance using cloudformation template. While launching use userdata to execute the commands and make post 80 and 22 open for everyone. Deploy it and test it.
+3. Launch an ec2 instance using cloudformation template. While launching use userdata to make it webserver also, open post 80 and 22 open for everyone. Deploy it and test it.
 
 Do the above tasks with the help of chatgpt, if required. 
 
-
-
 ___________________________________________________________________________________
+
 
 
 How many Account you manage : 
